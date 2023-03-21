@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+
+{% block contenido_cambia %}
+    <form method="post", action="/create/">
+        {{ form.as_p }}
+        <button type="submit", name="Guardar">Crear nueveo Cliente</button>
+    </form>
+
+{% endblock %}
