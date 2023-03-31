@@ -2,9 +2,10 @@
 
 
 {% block contenido_cambia %}
-    <form method="post", action="/create/">
+    {#Creacion de curso#}
+    <form action="{% url 'AppTercerCrearCliente' %}" method="post">
+        {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit", name="Guardar">Crear nueveo Cliente</button>
+        <input type="submit" value="Crear">
     </form>
-
 {% endblock %}

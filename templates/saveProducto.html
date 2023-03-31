@@ -2,15 +2,10 @@
 
 
 {% block contenido_cambia %}
-    <h1>El contenido ha sido modificado</h1>
-    {% if clientes %}
-        {% for cliente in clientes %}
-            <p>nombre: {{ producto.nombre }}</p>
-            <p>precio: {{ producto.precio }}</p>
-            <p>email: {{ producto.cantidad }}</p>
-        {% endfor %}
-    {% else %}
-        <h1>No hay productos en el momento</h1>
-    {% endif %}
-
+    {#Creacion de curso#}
+    <form action="{% url 'AppTercerCrearProducto' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Crear">
+    </form>
 {% endblock %}

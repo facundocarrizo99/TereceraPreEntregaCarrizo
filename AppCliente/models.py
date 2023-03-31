@@ -7,10 +7,9 @@ class Cliente(models.Model):
     nombre = models.CharField(max_length=20)
     apellido = models.CharField(max_length=20)
     email = models.EmailField()
-    carrito = []
 
     def __str__(self):
-        return f"Nombre: {self.nombre}, Apellido: {self.apellido}"
+        return f"Nombre: {self.nombre}, Apellido: {self.apellido}, Email: {self.email}"
 
 
 class Producto(models.Model):
@@ -20,15 +19,3 @@ class Producto(models.Model):
 
     def __str__(self):
         return f"Nombre: {self.nombre}, Precio: {self.precio}, Cantidad: {self.cantidad}"
-
-
-class SaveCliente(forms.Form):
-    nombre = forms.CharField(max_length=20)
-    apellido = forms.CharField(max_length=20)
-    email = forms.EmailField()
-
-
-class SaveProducto(forms.Form):
-    nombre = forms.CharField(max_length=40)
-    precio = forms.FloatField()
-    cantidad = forms.IntegerField()

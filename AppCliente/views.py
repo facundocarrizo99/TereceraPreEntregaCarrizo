@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from AppCliente.models import Cliente, Producto, SaveProducto, SaveCliente
+from AppCliente.models import Cliente, Producto
+from .forms import ClienteForm, ProductoForm
 from django import forms
 
 
@@ -9,20 +10,28 @@ def cliente(request):
 
 def crearCliente(request):
     if request.method == "POST":
-        saveCliente = SaveCliente(request.POST)
-    else:
-        saveCliente = Cliente()
-    return render(request, "saveCliente.html", {"form":saveCliente})
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["nombre"]
+            surname = form.cleaned_data["apellido"]
+            mail = form.cleaned_data["email"]
+            t = Cliente(nombre=name, apellido=surname, email=mail)
+            t.save()
+    context = {
+        "form": ClienteForm()
+    }
+    return render(request, "saveCliente.html", context=context)
 
 def crearProducto(request):
     if request.method == "POST":
-        form = SaveProducto(request.POST)
+        form = ProductoForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data["nombre"]
             price = form.cleaned_data["precio"]
             quantity = form.cleaned_data["cantidad"]
             t = Cliente(nombre=name, precio=price, cantidad=quantity)
             t.save()
-    else:
-        saveProducto = Producto()
-    return render(request, "saveProducto.html",  {"form":saveProducto})
+    context = {
+        "form": ProductoForm()
+    }
+    return render(request, "saveProducto.html", context=context)

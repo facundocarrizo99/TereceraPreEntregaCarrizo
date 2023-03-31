@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Tercer Pre-Entrega Carrizo{% endblock %}</title>
-</head>
-<body>
-    <div id = "content", name = "content">
-        {% block content %}
-        {% endblock %}
-    </div>
-</body>
+    <head>
+        {% load static %}
+        <title>Clientes</title>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'HomeScreen' %}">Home</a>
+                <a class="navbar-brand" href="{% url 'AppTercerCrearCliente' %}">Crear Cliente</a>
+                <a class="navbar-brand" href="{% url 'AppTercerCrearProducto' %}">Crear Producto</a>
+            </div>
+        </nav>
+        <!-- Body -->
+            {% block contenido_cambia %}
+                <h1>No se encuentra contenido disponible</h1>
+            {% endblock %}
+
+
+
+
+    </body>
 </html>
+<footer>
+    Footer
+    © 2023 GitHub, Inc.
+    Footer navigation
+    Terms
+    Privacy
+    Security
+    Status
+    Docs
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+</footer>
