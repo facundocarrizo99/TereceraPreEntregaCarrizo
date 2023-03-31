@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block contenido_cambia %}
+    <h1>El contenido ha sido modificado</h1>
+    {% if productos %}
+        {% for producto in productos %}
+            <p>nombre: {{ producto.nombre }}</p>
+            <p>precio: {{ producto.precio }}</p>
+            <p>cantidad: {{ producto.cantidad }}</p>
+        {% endfor %}
+    {% else %}
+        <h1>No hay productos en el momento</h1>
+    {% endif %}
+
+{% endblock %}

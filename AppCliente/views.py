@@ -1,12 +1,26 @@
 from django.shortcuts import render
 from AppCliente.models import Cliente, Producto
-from .forms import ClienteForm, ProductoForm
-from django import forms
+from .forms import ClienteForm, ProductoForm, BusquedaClienteForm, BusquedaProductoForm
 
 
 # Create your views here.
+def homeScreen(request):
+    return render(request, "base.html")
 def cliente(request):
-    return render(request, "clientes.html")
+    all_clientes = Cliente.objects.all()
+    context = {
+        "clientes": all_clientes,
+        "form_busqueda": BusquedaClienteForm(),
+    }
+    return render(request, "clientes.html", context=context)
+
+def productos(request):
+    all_productos = Producto.objects.all()
+    context = {
+        "productos": all_productos,
+        "form_busqueda": BusquedaProductoForm(),
+    }
+    return render(request, "productos.html", context=context)
 
 def crearCliente(request):
     if request.method == "POST":
@@ -29,7 +43,7 @@ def crearProducto(request):
             name = form.cleaned_data["nombre"]
             price = form.cleaned_data["precio"]
             quantity = form.cleaned_data["cantidad"]
-            t = Cliente(nombre=name, precio=price, cantidad=quantity)
+            t = Producto(nombre=name, precio=price, cantidad=quantity)
             t.save()
     context = {
         "form": ProductoForm()

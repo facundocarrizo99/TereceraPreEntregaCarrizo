@@ -12,3 +12,8 @@ class ProductoForm(forms.ModelForm):
         model = Producto
         fields = "__all__"
 
+class BusquedaClienteForm():
+    nombre = forms.CharField(min_length=3, max_length=40)
+
+class BusquedaProductoForm():
+    nombre = forms.CharField(min_length=3, max_length=40)
